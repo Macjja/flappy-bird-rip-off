@@ -1,0 +1,86 @@
+[gd_scene load_steps=7 format=3 uid="uid://daqmm0awmw3au"]
+
+[ext_resource type="Script" path="res://hurt_pipe.gd" id="1_2s4nl"]
+[ext_resource type="Texture2D" uid="uid://8p5oe64j2lxt" path="res://png-transparent-super-mario-tunnel-illustration-new-super-mario-bros-u-super-mario-world-pipe-super-mario-bros-nintendo-grass-thumbnail.png" id="1_dcquw"]
+[ext_resource type="Script" path="res://hurtpipe_manager.gd" id="1_p2004"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cbii6"]
+size = Vector2(126, 496)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p8rjl"]
+size = Vector2(10, 244)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_au6b5"]
+size = Vector2(8, 663)
+
+[node name="HurtPipes" type="Node2D"]
+script = ExtResource("1_p2004")
+
+[node name="pipe" type="Area2D" parent="." groups=["hurt"]]
+position = Vector2(-10, 0)
+script = ExtResource("1_2s4nl")
+
+[node name="Png-transparent-super-mario-tunnel-illustration-new-super-mario-bros-u-super-mario-world-pipe-super-mario-bros-nintendo-grass-thumbnail2" type="Sprite2D" parent="pipe"]
+position = Vector2(1225, 24.1113)
+rotation = -3.14159
+scale = Vector2(0.35, 0.751467)
+texture = ExtResource("1_dcquw")
+
+[node name="Png-transparent-super-mario-tunnel-illustration-new-super-mario-bros-u-super-mario-world-pipe-super-mario-bros-nintendo-grass-thumbnail" type="Sprite2D" parent="pipe"]
+position = Vector2(1225, 717.767)
+scale = Vector2(0.35, 0.70592)
+texture = ExtResource("1_dcquw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pipe"]
+position = Vector2(1225, 23)
+shape = SubResource("RectangleShape2D_cbii6")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="pipe"]
+position = Vector2(1225, 734)
+shape = SubResource("RectangleShape2D_cbii6")
+
+[node name="point_awarder" type="Area2D" parent="pipe"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pipe/point_awarder"]
+position = Vector2(1274, 376)
+shape = SubResource("RectangleShape2D_p8rjl")
+
+[node name="pipe2" type="Area2D" parent="." groups=["hurt"]]
+position = Vector2(-10, 0)
+script = ExtResource("1_2s4nl")
+
+[node name="Png-transparent-super-mario-tunnel-illustration-new-super-mario-bros-u-super-mario-world-pipe-super-mario-bros-nintendo-grass-thumbnail2" type="Sprite2D" parent="pipe2"]
+position = Vector2(1225, 24.1113)
+rotation = -3.14159
+scale = Vector2(0.35, 0.751467)
+texture = ExtResource("1_dcquw")
+
+[node name="Png-transparent-super-mario-tunnel-illustration-new-super-mario-bros-u-super-mario-world-pipe-super-mario-bros-nintendo-grass-thumbnail" type="Sprite2D" parent="pipe2"]
+position = Vector2(1225, 717.767)
+scale = Vector2(0.35, 0.70592)
+texture = ExtResource("1_dcquw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pipe2"]
+position = Vector2(1225, 23)
+shape = SubResource("RectangleShape2D_cbii6")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="pipe2"]
+position = Vector2(1225, 734)
+shape = SubResource("RectangleShape2D_cbii6")
+
+[node name="point_awarder" type="Area2D" parent="pipe2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pipe2/point_awarder"]
+position = Vector2(1274, 376)
+shape = SubResource("RectangleShape2D_p8rjl")
+
+[node name="respawn" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="respawn"]
+position = Vector2(-39, 322)
+shape = SubResource("RectangleShape2D_au6b5")
+
+[connection signal="area_entered" from="pipe/point_awarder" to="." method="_on_point_awarder_area_entered"]
+[connection signal="area_entered" from="pipe2/point_awarder" to="." method="_on_point_awarder_area_entered"]
+[connection signal="area_entered" from="respawn" to="pipe" method="_on_respawn_area_entered"]
+[connection signal="area_entered" from="respawn" to="pipe2" method="_on_respawn_area_entered"]
